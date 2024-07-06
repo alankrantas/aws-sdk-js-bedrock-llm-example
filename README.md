@@ -6,10 +6,8 @@ A basic script of invoking an AWS Bedrock LLM model (using Anthropic Claude v2 a
 
 1. Make sure your organization [have access to at least one Bedrock model](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html) in at least one of the region.
 2. Create an [**AWS Cognito Identity pool**](https://docs.aws.amazon.com/cognito/latest/developerguide/identity-pools.html) using **Guest access** and **Basic (classic) authentication**.
-3. Create a new [**IAM role**](https://docs.aws.amazon.com/cognito/latest/developerguide/iam-roles.html) in the identity pool.
-4. Grant the role a [**permission with Bedrock full access policy**](https://github.com/aws-samples/amazon-bedrock-workshop#enable-aws-iam-permissions-for-bedrock).
-5. Copy the region name, identity pool ID string and the role's ARN (Amazon Resource Name) string.
-6. Modify the variables in the script [`bedrock.js`](https://github.com/alankrantas/aws-sdk-js-bedrock-llm-example/blob/main/bedrock.js).
+3. Create a [**IAM role**](https://docs.aws.amazon.com/cognito/latest/developerguide/iam-roles.html) in the identity pool and grant it the [**permission with Bedrock full access policy**](https://github.com/aws-samples/amazon-bedrock-workshop#enable-aws-iam-permissions-for-bedrock).
+4. Copy the region name, identity pool ID string and the role's ARN (Amazon Resource Name) string to replace  the variables in the script [`bedrock.js`](https://github.com/alankrantas/aws-sdk-js-bedrock-llm-example/blob/main/bedrock.js).
 
 ## Install AWS SDK for JavaScript
 
