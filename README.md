@@ -5,9 +5,9 @@ A basic script of invoking an AWS Bedrock LLM model (using Anthropic Claude v2 a
 ## Prerequisites
 
 1. Make sure your organization [have access to at least one Bedrock model](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html) in at least one of the region.
-2. [Create an **AWS Cognito Identity pool**](https://docs.aws.amazon.com/cognito/latest/developerguide/identity-pools.html) using **basic (classic) authentication**.
-3. Create a **guest role** in the identity pool.
-4. Grant the role [**a policy with full access permission to Bedrock**](https://github.com/aws-samples/amazon-bedrock-workshop#enable-aws-iam-permissions-for-bedrock).
+2. Create an [**AWS Cognito Identity pool**](https://docs.aws.amazon.com/cognito/latest/developerguide/identity-pools.html) using **Guest access** and **Basic (classic) authentication**.
+3. Create a new **IAM role** in the identity pool.
+4. Grant the role a [**permission with Bedrock full access policy**](https://github.com/aws-samples/amazon-bedrock-workshop#enable-aws-iam-permissions-for-bedrock).
 5. Copy the region name, identity pool ID and role ARN string.
 6. Modify the variables in the script `bedrock.js`.
 
@@ -35,6 +35,8 @@ yarn add ...
 node bedrock.js
 ```
 
+> See [Get started in the browser](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/getting-started-browser.html) and [Developer Reference](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/) for SDK references.
+
 ### Notes
 
 1. The non-streaming mode (wait until all responses returned) should be able to work in browser (not tested).
@@ -42,6 +44,8 @@ node bedrock.js
 3. The reason of having to setup Bedrock access in guest mode is due to the [session policy behavior/design of the STS client](https://github.com/aws/aws-sdk-js/issues/4303#issuecomment-1603405731).
 
 ## Example Output
+
+> See [Anthropic Claude Text Completions API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-text-completion.html) and [Prompt engineering overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) for how to configure the prompt and parameters.
 
 Prompt:
 
@@ -104,9 +108,3 @@ So that gives a general idea of what a cat programming language could look like!
 
 > In order to have the model "remember" the previous conversation, include the previous output as prompt in front of the new ones.
 
-## References
-
-- [AWS SDK for JavaScript - Get started in the browser](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/getting-started-browser.html)
-- [AWS SDK for JavaScript v3 - Developer Reference](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/)
-- [Amazon Bedrock - Anthropic Claude Text Completions API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-text-completion.html)
-- [Anthropic - Prompt engineering overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)
