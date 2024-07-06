@@ -6,10 +6,10 @@ A basic script of invoking an AWS Bedrock LLM model (using Anthropic Claude v2 a
 
 1. Make sure your organization [have access to at least one Bedrock model](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html) in at least one of the region.
 2. Create an [**AWS Cognito Identity pool**](https://docs.aws.amazon.com/cognito/latest/developerguide/identity-pools.html) using **Guest access** and **Basic (classic) authentication**.
-3. Create a new **IAM role** in the identity pool.
+3. Create a new [**IAM role**](https://docs.aws.amazon.com/cognito/latest/developerguide/iam-roles.html) in the identity pool.
 4. Grant the role a [**permission with Bedrock full access policy**](https://github.com/aws-samples/amazon-bedrock-workshop#enable-aws-iam-permissions-for-bedrock).
-5. Copy the region name, identity pool ID and role ARN string.
-6. Modify the variables in the script `bedrock.js`.
+5. Copy the region name, identity pool ID string and the role's ARN (Amazon Resource Name) string.
+6. Modify the variables in the script [`bedrock.js`](https://github.com/alankrantas/aws-sdk-js-bedrock-llm-example/blob/main/bedrock.js).
 
 ## Install AWS SDK for JavaScript
 
@@ -41,7 +41,7 @@ node bedrock.js
 
 1. The non-streaming mode (wait until all responses returned) should be able to work in browser (not tested).
 2. The streaming output mode (by setting `streamingMode` to `true`) uses `process` to print string without new lines, so it only works in Node.js. But you can get the idea of how the streaming works.
-3. The reason of having to access Bedrock in guest mode is due to the [session policy behavior/design of the STS client](https://github.com/aws/aws-sdk-js/issues/4303#issuecomment-1603405731). You'll have to encode/hide the identity pool ID and role ARN string.
+3. The reason of having to access Bedrock in guest mode is due to the [session policy behavior/design of the STS client](https://github.com/aws/aws-sdk-js/issues/4303#issuecomment-1603405731). You'll have to encode/hide the identity pool ID as well as the role ARN.
 
 ## Example Output
 
