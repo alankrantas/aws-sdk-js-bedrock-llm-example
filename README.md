@@ -108,4 +108,5 @@ So that gives a general idea of what a cat programming language could look like!
 
 - [AWS SDK for JavaScript - Get started in the browser](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/getting-started-browser.html)
 - [AWS SDK for JavaScript v3 - Developer Reference](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/)
+- [Amazon Bedrock - Anthropic Claude Text Completions API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-text-completion.html)
 - [Anthropic - Prompt engineering overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)
