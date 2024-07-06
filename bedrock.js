@@ -1,22 +1,8 @@
 /*
  * Invoke AWS Bedrock LLM model in guest mode using AWS SDK for JavaScript
  *
- *
- * Install AWS SDK:
- *
- * npm install @aws-sdk/client-cognito-identity @aws-sdk/client-sts @aws-sdk/client-bedrock-runtime
- * or
- * yarn add @aws-sdk/client-cognito-identity @aws-sdk/client-sts @aws-sdk/client-bedrock-runtime
- *
- *
- * Prerequisites:
- *
- * 1. Make sure your organization have access to at least one Bedrock model in at least one of the region.
- * 2. Create an AWS Cognito Identity pool using basic (classic) authentication.
- * 3. Create a guest role in the identity pool.
- * 4. Grant the role a policy with full access to Bedrock.
- * 5. Copy the region name, identity pool ID and role ARN string.
- * 6. Modify the variables below, including prompt and streamMode.
+ * See the readme for details:
+ * https://github.com/alankrantas/aws-sdk-js-bedrock-llm-example/blob/main/README.md
  */
 
 // prompt for bedrock model
