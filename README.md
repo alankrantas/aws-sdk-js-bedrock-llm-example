@@ -41,7 +41,7 @@ node bedrock.js
 
 1. The non-streaming mode (wait until all responses returned) should be able to work in browser (not tested).
 2. The streaming output mode (by setting `streamingMode` to `true`) uses `process` to print string without new lines, so it only works in Node.js. But you can get the idea of how the streaming works.
-3. The reason of having to setup Bedrock access in guest mode is due to the [session policy behavior/design of the STS client](https://github.com/aws/aws-sdk-js/issues/4303#issuecomment-1603405731).
+3. The reason of having to access Bedrock in guest mode is due to the [session policy behavior/design of the STS client](https://github.com/aws/aws-sdk-js/issues/4303#issuecomment-1603405731). You'll have to encode/hide the identity pool ID and role ARN string.
 
 ## Example Output
 
