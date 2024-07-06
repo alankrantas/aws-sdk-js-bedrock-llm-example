@@ -1,8 +1,10 @@
 # Invoke AWS Bedrock LLM Model Using AWS SDK for JavaScript
 
+A basic example of invoking an AWS Bedrock model and get LLM responses.
+
 ## Prerequisites
 
-1. Make sure your organization [have access to at least one Bedrock model](Manage access to Amazon Bedrock foundation models) in at least one of the region.
+1. Make sure your organization [have access to at least one Bedrock model](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html) in at least one of the region.
 2. [Create an **AWS Cognito Identity pool**](https://docs.aws.amazon.com/cognito/latest/developerguide/identity-pools.html) using **basic (classic) authentication**.
 3. Create a **guest role** in the identity pool.
 4. Grant the role [**a policy with full access permission to Bedrock**](https://github.com/aws-samples/amazon-bedrock-workshop#enable-aws-iam-permissions-for-bedrock).
