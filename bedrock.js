@@ -34,6 +34,9 @@ const region = "{region}";
 const cognitoIdentityPoolId = `${region}:00000000-0000-0000-0000-000000000000`;
 const bedrockRoleArn =
   "arn:aws:iam::000000000000:role/service-role/{AWSRoleForBedrockName}";
+
+// model
+// see: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-text-completion.html
 const modelId = "anthropic.claude-v2";
 const modelParams = {
   prompt: prompt,
