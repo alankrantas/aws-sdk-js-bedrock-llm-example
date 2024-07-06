@@ -11,13 +11,17 @@ A basic example of invoking an AWS Bedrock model and get LLM responses.
 5. Copy the region name, identity pool ID and role ARN string.
 6. Modify the variables in the script `bedrock.js`.
 
-### Notes
-
-1. The non-streaming mode (wait until all responses returned) should be able to work in browser (not tested).
-2. The streaming output mode (by setting `streamingMode` to `true`) uses `process` so it only works in Node.js. But you can get the idea of how the streaming works.
-3. The reason of having to run this guest mode is due to the [session policy behavior/design of the STS client](https://github.com/aws/aws-sdk-js/issues/4303#issuecomment-1603405731).
-
 ## Install AWS SDK for JavaScript
+
+### Create Local Project
+
+```bash
+npm init -y
+```
+
+Then add `"type": "module"` in your `package.json`.
+
+### Install dependencies
 
 ```bash
 npm install @aws-sdk/client-cognito-identity @aws-sdk/client-sts @aws-sdk/client-bedrock-runtime
@@ -25,15 +29,19 @@ npm install @aws-sdk/client-cognito-identity @aws-sdk/client-sts @aws-sdk/client
 yarn add ...
 ```
 
-And add `"type": "module"` in your `package.json`.
-
 ### Execute
 
 ```bash
 node bedrock.js
 ```
 
-### Example Output
+### Notes
+
+1. The non-streaming mode (wait until all responses returned) should be able to work in browser (not tested).
+2. The streaming output mode (by setting `streamingMode` to `true`) uses `process` to print string without new lines, so it only works in Node.js. But you can get the idea of how the streaming works.
+3. The reason of having to setup Bedrock access in guest mode is due to the [session policy behavior/design of the STS client](https://github.com/aws/aws-sdk-js/issues/4303#issuecomment-1603405731).
+
+## Example Output
 
 Prompt:
 
@@ -93,6 +101,8 @@ prowl (foodBowl.isEmpty()) {
 
 So that gives a general idea of what a cat programming language could look like!
 ```
+
+> In order to have the model "remember" the previous conversation, include the previous output as prompt in front of the new ones.
 
 ## References
 
