@@ -1,6 +1,6 @@
 # Invoke AWS Bedrock LLM Model Using AWS SDK for JavaScript
 
-A basic example of invoking an AWS Bedrock model and get LLM responses.
+A basic script of invoking an AWS Bedrock LLM model (using Anthropic Claude v2 as example) and get responses.
 
 ## Prerequisites
 
