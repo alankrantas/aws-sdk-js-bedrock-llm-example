@@ -34,6 +34,13 @@ yarn add ...
 // streaming output mode
 const streamingMode = false;
 
+// model prompt
+const prompt = `
+
+Human: Please invent a fake programming language for cats.
+
+Assistant:`;
+
 // model params
 const modelId = "anthropic.claude-v2";
 const modelParams = {
@@ -42,13 +49,6 @@ const modelParams = {
   temperature: 0.1,
   top_p: 0.9,
 };
-
-// model prompt
-const prompt = `
-
-Human: Please invent a fake programming language for cats.
-
-Assistant:`;
 ```
 
 > See [Anthropic Claude Text Completions API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-text-completion.html) and [Prompt engineering overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) for how to configure the prompt and parameters.
