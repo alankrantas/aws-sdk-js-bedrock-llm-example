@@ -7,19 +7,18 @@ A basic script of invoking an AWS Bedrock LLM model (using Anthropic Claude v2 a
 1. Make sure your organization [have access to at least one Bedrock model](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html) in at least one of the region.
 2. Create an [**AWS Cognito Identity pool**](https://docs.aws.amazon.com/cognito/latest/developerguide/identity-pools.html) using **Guest access** and **Basic (classic) authentication**.
 3. Create a [**IAM role**](https://docs.aws.amazon.com/cognito/latest/developerguide/iam-roles.html) in the identity pool and grant it the [**permission with Bedrock full access policy**](https://github.com/aws-samples/amazon-bedrock-workshop#enable-aws-iam-permissions-for-bedrock).
-4. Copy the region name, identity pool ID string and the role's ARN (Amazon Resource Name) string to replace  the variables in the script [`bedrock.js`](https://github.com/alankrantas/aws-sdk-js-bedrock-llm-example/blob/main/bedrock.js).
+4. Copy the region name, identity pool ID string and the role's ARN (Amazon Resource Name) string to replace  the variables in the script [`bedrock.js`](https://github.com/alankrantas/aws-sdk-js-bedrock-llm-example/blob/main/bedrock.js):
 
-## Install AWS SDK for JavaScript
-
-### Create Local Project
-
-```bash
-npm init -y
+```javascript
+const region = "{region}";
+const cognitoIdentityPoolId = `${region}:00000000-0000-0000-0000-000000000000`;
+const bedrockRoleArn =
+  "arn:aws:iam::000000000000:role/service-role/{AWSRoleForBedrockName}";
 ```
 
-Then add `"type": "module"` in your `package.json`.
+> The reason of having to access Bedrock in guest mode is due to the [session policy behavior/design of the STS client](https://github.com/aws/aws-sdk-js/issues/4303#issuecomment-1603405731). You'll have to encode/hide the identity pool ID as well as the role ARN.
 
-### Install dependencies
+## Install AWS SDK for JavaScript
 
 ```bash
 npm install @aws-sdk/client-cognito-identity @aws-sdk/client-sts @aws-sdk/client-bedrock-runtime
@@ -27,34 +26,45 @@ npm install @aws-sdk/client-cognito-identity @aws-sdk/client-sts @aws-sdk/client
 yarn add ...
 ```
 
-### Execute
+> For additional SDK reference, see [Get started in the browser](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/getting-started-browser.html) and [Developer Reference](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/).
+
+## Configure Prompt and Parameters
+
+```javascript
+// streaming output mode
+const streamingMode = false;
+
+// model params
+const modelId = "anthropic.claude-v2";
+const modelParams = {
+  prompt: prompt,
+  max_tokens_to_sample: 2048,
+  temperature: 0.1,
+  top_p: 0.9,
+};
+
+// model prompt
+const prompt = `
+
+Human: Please invent a fake programming language for cats.
+
+Assistant:`;
+```
+
+> See [Anthropic Claude Text Completions API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-text-completion.html) and [Prompt engineering overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) for how to configure the prompt and parameters.
+
+### Notes
+
+1. The non-streaming mode (wait until all responses returned) should be able to work in browser (not tested).
+2. The streaming output mode (by setting `streamingMode` to `true`) uses `process` of Node.js to print string without new lines. But you can get the idea of how the streaming works.
+
+## Execute Example
 
 ```bash
 node bedrock.js
 ```
 
-> See [Get started in the browser](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/getting-started-browser.html) and [Developer Reference](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/) for SDK references.
-
-### Notes
-
-1. The non-streaming mode (wait until all responses returned) should be able to work in browser (not tested).
-2. The streaming output mode (by setting `streamingMode` to `true`) uses `process` to print string without new lines, so it only works in Node.js. But you can get the idea of how the streaming works.
-3. The reason of having to access Bedrock in guest mode is due to the [session policy behavior/design of the STS client](https://github.com/aws/aws-sdk-js/issues/4303#issuecomment-1603405731). You'll have to encode/hide the identity pool ID as well as the role ARN.
-
-## Example Output
-
-> See [Anthropic Claude Text Completions API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-text-completion.html) and [Prompt engineering overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) for how to configure the prompt and parameters.
-
-Prompt:
-
-```
-
-Human: Please invent a fake programming language for cats.
-
-Assistant:
-```
-
-Ouotput:
+### Example Output
 
 ```
 
