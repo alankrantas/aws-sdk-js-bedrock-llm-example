@@ -14,6 +14,13 @@ const bedrockRoleArn =
 // streaming output mode
 const streamingMode = false;
 
+// model prompt
+const prompt = `
+
+Human: Please invent a fake programming language for cats.
+
+Assistant:`;
+
 // model params
 const modelId = "anthropic.claude-v2";
 const modelParams = {
@@ -22,13 +29,6 @@ const modelParams = {
   temperature: 0.1,
   top_p: 0.9,
 };
-
-// model prompt
-const prompt = `
-
-Human: Please invent a fake programming language for cats.
-
-Assistant:`;
 
 // ================================================================================
 
