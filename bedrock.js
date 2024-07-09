@@ -5,24 +5,16 @@
  * https://github.com/alankrantas/aws-sdk-js-bedrock-llm-example/blob/main/README.md
  */
 
-// prompt for bedrock model
-const prompt = `
-
-Human: Please invent a fake programming language for cats.
-
-Assistant:`;
-
-// streaming output mode
-const streamingMode = false;
-
 // bedrock resource
 const region = "{region}";
 const cognitoIdentityPoolId = `${region}:00000000-0000-0000-0000-000000000000`;
 const bedrockRoleArn =
   "arn:aws:iam::000000000000:role/service-role/{AWSRoleForBedrockName}";
 
-// model
-// see: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-text-completion.html
+// streaming output mode
+const streamingMode = false;
+
+// model params
 const modelId = "anthropic.claude-v2";
 const modelParams = {
   prompt: prompt,
@@ -31,11 +23,12 @@ const modelParams = {
   top_p: 0.9,
 };
 
-/*
- * Execute:
- *
- * > node bedrock.js
- */
+// model prompt
+const prompt = `
+
+Human: Please invent a fake programming language for cats.
+
+Assistant:`;
 
 // ================================================================================
 
